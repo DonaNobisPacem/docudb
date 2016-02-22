@@ -14,7 +14,7 @@ default: &default
   encoding: utf8
   pool: 5
   username: root
-  password:
+  password: <%= ENV['default_database_password'] %>
   socket: /var/run/mysqld/mysqld.sock
 
 development:
@@ -51,4 +51,4 @@ production:
   <<: *default
   database: docudb_production
   username: docudb
-  password: <%= ENV['DOCUDB_DATABASE_PASSWORD'] %>
+  password: <%= ENV['docudb_database_password'] %>

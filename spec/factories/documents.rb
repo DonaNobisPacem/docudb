@@ -1,9 +1,10 @@
 FactoryGirl.define do
   factory :document do
-    control "MyString"
+    control "[OVPD" + DateTime.now.strftime("%Y]") + "-" + SecureRandom.hex
     office 1
-    date "2016-02-22 12:49:53"
-    received_by "MyString"
-    subject "MyString"
+    date DateTime.now
+    received_by {FFaker::NameDA.name}
+    subject {FFaker::Movie.title}
+    outgoing true
   end
 end

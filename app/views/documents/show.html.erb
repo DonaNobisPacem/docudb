@@ -7,12 +7,12 @@
 
 <p>
   <strong>Office:</strong>
-  <%= @document.office %>
+  <%= @document.office_name %>
 </p>
 
 <p>
   <strong>Date:</strong>
-  <%= @document.date %>
+  <%= @document.date.strftime("%d %B %Y") %>
 </p>
 
 <p>

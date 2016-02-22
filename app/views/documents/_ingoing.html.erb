@@ -1,0 +1,10 @@
+<div class="panel panel-success">
+  	<div class="panel-heading">
+  		<h3 class="panel-header">Ingoing Documents</h3>
+  	</div>
+  	<div class="panel-body" style="max-height: 800px ;overflow-y: scroll;">
+  		<% @ingoing.each do |document| %>
+	  		<%= render "entrybox", document: document %>
+  		<% end %>
+  	</div>
+</div>

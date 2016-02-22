@@ -24,17 +24,25 @@ RSpec.describe OfficesController, type: :controller do
   # Office. As you add validations to Office, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      name: "Office 1"
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      name: ""
+    }
   }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # OfficesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
+
+  before(:each) do
+    allow(controller).to receive(:authenticate_user!).and_return(true)
+  end
 
   describe "GET #index" do
     it "assigns all offices as @offices" do
@@ -103,14 +111,16 @@ RSpec.describe OfficesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          name: "Updated Office 1"
+        }
       }
 
       it "updates the requested office" do
         office = Office.create! valid_attributes
         put :update, {:id => office.to_param, :office => new_attributes}, valid_session
         office.reload
-        skip("Add assertions for updated state")
+        expect(assigns(:office).name).to eq(new_attributes[:name])
       end
 
       it "assigns the requested office as @office" do

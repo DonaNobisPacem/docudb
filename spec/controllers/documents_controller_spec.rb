@@ -24,17 +24,35 @@ RSpec.describe DocumentsController, type: :controller do
   # Document. As you add validations to Document, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      control: "[OVPD" + DateTime.now.strftime("%Y]") + "-" + SecureRandom.hex,
+      office: "1",
+      date: DateTime.now,
+      received_by: "Receiver",
+      subject: "Subject 1",
+      outgoing: true
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      control: "",
+      office: "1",
+      date: DateTime.now,
+      received_by: "Receiver",
+      subject: "",
+      outgoing: true
+    }
   }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # DocumentsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
+
+  before(:each) do
+    allow(controller).to receive(:authenticate_user!).and_return(true)
+  end
 
   describe "GET #index" do
     it "assigns all documents as @documents" do
@@ -103,14 +121,21 @@ RSpec.describe DocumentsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          control: "[OVPD" + DateTime.now.strftime("%Y]") + "-" + SecureRandom.hex,
+          office: "1",
+          date: DateTime.now,
+          received_by: "Receiver",
+          subject: "Updated Subject 1",
+          outgoing: true
+        }
       }
 
       it "updates the requested document" do
         document = Document.create! valid_attributes
         put :update, {:id => document.to_param, :document => new_attributes}, valid_session
         document.reload
-        skip("Add assertions for updated state")
+        expect(assigns(:document).subject).to eq(new_attributes[:subject])
       end
 
       it "assigns the requested document as @document" do

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222035912) do
+ActiveRecord::Schema.define(version: 20160222064135) do
 
   create_table "documents", force: :cascade do |t|
     t.string   "control",     limit: 255
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20160222035912) do
     t.string   "subject",     limit: 255
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.boolean  "outgoing"
   end
 
   create_table "offices", force: :cascade do |t|

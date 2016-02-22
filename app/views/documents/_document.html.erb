@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Control:</strong>
+  <%= @document.control %>
+</p>
+
+<p>
+  <strong>Office:</strong>
+  <%= @document.office_name %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @document.date.strftime("%d %B %Y") %>
+</p>
+
+<p>
+  <strong>Received by:</strong>
+  <%= @document.received_by %>
+</p>
+
+<div class="btn-group pull-right">
+  <%= link_to 'Delete', @document, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
+  <%= link_to 'Edit', edit_document_path(@document), class: "btn btn-info btn-sm" %>
+  <button type="button" class="btn btn-success btn-sm" data-dismiss="modal">Close</button>
+</div>
+<div class="clearfix"></div>

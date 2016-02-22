@@ -1,15 +1,28 @@
 class DocumentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_document, only: [:show, :edit, :update, :destroy]
 
   # GET /documents
   # GET /documents.json
   def index
-    @documents = Document.all
+    if params[:search].present?
+      #@bids = Bid.search(params[:search], page: params[:page], per_page: 10)
+      @ingoing = Document.search(params[:search], where: {outgoing: false} )
+      @outgoing = Document.search(params[:search], where: {outgoing: true} )
+    else
+      @documents = Document.all
+      @ingoing = @documents.where(outgoing: false)
+      @outgoing = @documents.where(outgoing: true)
+    end
   end
 
   # GET /documents/1
   # GET /documents/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /documents/new
@@ -69,6 +82,6 @@ class DocumentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
-      params.require(:document).permit(:control, :office, :date, :received_by, :subject)
+      params.require(:document).permit(:control, :office, :date, :received_by, :subject, :outgoing)
     end
 end

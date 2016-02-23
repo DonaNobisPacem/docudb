@@ -30,7 +30,12 @@ RSpec.describe DocumentsController, type: :controller do
       date: DateTime.now,
       received_by: "Receiver",
       subject: "Subject 1",
-      outgoing: true
+      outgoing: true,
+      attachments_attributes: [
+        {
+          attachment: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'files', 'test_attachment.pdf'))
+        }
+      ]
     }
   }
 
@@ -127,7 +132,12 @@ RSpec.describe DocumentsController, type: :controller do
           date: DateTime.now,
           received_by: "Receiver",
           subject: "Updated Subject 1",
-          outgoing: true
+          outgoing: true,
+          attachments_attributes: [
+            {
+              attachment: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'files', 'test_attachment.pdf'))
+            }
+          ]
         }
       }
 

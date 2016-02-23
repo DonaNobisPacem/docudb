@@ -89,9 +89,9 @@ RSpec.describe OfficesController, type: :controller do
         expect(assigns(:office)).to be_persisted
       end
 
-      it "redirects to the created office" do
+      it "redirects to the office list" do
         post :create, {:office => valid_attributes}, valid_session
-        expect(response).to redirect_to(Office.last)
+        expect(response).to redirect_to(offices_path)
       end
     end
 
@@ -129,10 +129,10 @@ RSpec.describe OfficesController, type: :controller do
         expect(assigns(:office)).to eq(office)
       end
 
-      it "redirects to the office" do
+      it "redirects to the office list" do
         office = Office.create! valid_attributes
         put :update, {:id => office.to_param, :office => valid_attributes}, valid_session
-        expect(response).to redirect_to(office)
+        expect(response).to redirect_to(offices_path)
       end
     end
 

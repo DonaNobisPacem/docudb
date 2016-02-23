@@ -19,6 +19,7 @@ class DocumentsController < ApplicationController
   # GET /documents/1
   # GET /documents/1.json
   def show
+    @attachments = @document.attachments
     respond_to do |format|
       format.html
       format.js
@@ -28,10 +29,12 @@ class DocumentsController < ApplicationController
   # GET /documents/new
   def new
     @document = Document.new
+    @attachment = @document.attachments.build
   end
 
   # GET /documents/1/edit
   def edit
+    @attachment = @document.attachments.build unless @document.attachments.count > 0
   end
 
   # POST /documents
@@ -41,6 +44,11 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.save
+        if params[:attachments]
+          params[:attachments].each do |a|
+            @attachment = @document.attachments.create!(:attachment => a)
+          end
+        end
         format.html { redirect_to @document, notice: 'Document was successfully created.' }
         format.json { render :show, status: :created, location: @document }
       else
@@ -55,6 +63,11 @@ class DocumentsController < ApplicationController
   def update
     respond_to do |format|
       if @document.update(document_params)
+        if params[:attachments]
+          params[:attachments].each do |a|
+            @attachment = @document.attachments.create!(:attachment => a)
+          end
+        end
         format.html { redirect_to @document, notice: 'Document was successfully updated.' }
         format.json { render :show, status: :ok, location: @document }
       else
@@ -82,6 +95,20 @@ class DocumentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
-      params.require(:document).permit(:control, :office, :date, :received_by, :subject, :outgoing)
+      params.require(:document).permit(
+        :control, 
+        :office, 
+        :date, 
+        :received_by, 
+        :subject, 
+        :outgoing,
+        attachments_attributes: [
+          :id,
+          :attachment,
+          :attachment_cache,
+          :document_id,
+          :_destroy
+        ]
+      )
     end
 end

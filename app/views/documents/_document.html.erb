@@ -20,6 +20,17 @@
   <%= @document.received_by %>
 </p>
 
+<p>
+  <strong>Attachments:</strong> 
+  <% @attachments.each do |a| %>
+    <li>
+      <%= link_to a.attachment.file.filename, a.attachment_url, target: "_blank" %> | 
+      <%= link_to '<i class="fa fa-times-circle"></i> Remove'.html_safe, a, data: { confirm: 'Are you sure you want to delete this attachment?' }, method: :delete, style: "color: red;" %>
+    </li>
+  <% end %>
+</p>
+
+
 <div class="btn-group pull-right">
   <%= link_to 'Delete', @document, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
   <%= link_to 'Edit', edit_document_path(@document), class: "btn btn-info btn-sm" %>

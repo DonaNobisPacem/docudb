@@ -1,4 +1,4 @@
-<%= simple_form_for(@document) do |f| %>
+<%= simple_form_for(@document, :html => { :multipart => true }) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
@@ -7,7 +7,11 @@
     <%= f.input :date, label: "Date Received/Sent:", :as => :date_picker, :placeholder => "DD/MM/YYYY" %>
     <%= f.input :received_by, label: "Received By:" %>
     <%= f.input :subject, label: "Subject:" %>
-    <%= f.input :outgoing, label: "Status", collection: [[false, "Ingoing"], [true, "Outgoing"]], label_method: :last, value_method: :first, as: :radio_buttons %>
+    <%= f.input :outgoing, label: "Status:", collection: [[false, "Ingoing"], [true, "Outgoing"]], label_method: :last, value_method: :first, as: :radio_buttons %>
+
+    <b>Attachments: </b><br>
+    <%= file_field_tag "attachments[]", type: :file, multiple: true %>
+
   </div>
 
   <div class="form-actions">

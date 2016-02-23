@@ -1,5 +1,5 @@
 <br>
 <div class="jumbotron">
-<h1><b>Editing <%= @document.subject %></b></h1>
+<h1><b>Editing <%= link_to @document.subject, @document %></b></h1>
 
 <%= render 'form' %>

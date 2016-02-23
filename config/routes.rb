@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :attachments
   root 'documents#index'
   get '/admin_panel' => 'users#admin'
 

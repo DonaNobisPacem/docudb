@@ -6,6 +6,9 @@ class Document < ActiveRecord::Base
 	validates :subject, presence: true
 	validates :outgoing, inclusion: [true, false]
 
+	has_many :attachments, dependent: :destroy, inverse_of: :document
+	accepts_nested_attributes_for :attachments, allow_destroy: true
+
 	searchkick
 
 	def office_name

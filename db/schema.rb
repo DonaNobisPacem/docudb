@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222064135) do
+ActiveRecord::Schema.define(version: 20160223032850) do
+
+  create_table "attachments", force: :cascade do |t|
+    t.string   "attachment",  limit: 255
+    t.integer  "document_id", limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "attachments", ["document_id"], name: "index_attachments_on_document_id", using: :btree
 
   create_table "documents", force: :cascade do |t|
     t.string   "control",     limit: 255
@@ -50,4 +59,5 @@ ActiveRecord::Schema.define(version: 20160222064135) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "attachments", "documents"
 end

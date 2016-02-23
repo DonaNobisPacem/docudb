@@ -16,8 +16,13 @@ RSpec.describe Document, type: :model do
 
   	context "Outgoing boolean validation" do
   		it { should allow_value(true).for(:outgoing) }
-		it { should allow_value(false).for(:outgoing) }
-		it { should_not allow_value(nil).for(:outgoing) }
+		  it { should allow_value(false).for(:outgoing) }
+		  it { should_not allow_value(nil).for(:outgoing) }
   	end
+  end
+
+  describe "ActiveRecord Validations" do
+    it { should have_many(:attachments) }
+    it { should accept_nested_attributes_for(:attachments).allow_destroy(true) }
   end
 end

@@ -101,6 +101,8 @@ class DocumentsController < ApplicationController
         :date, 
         :received_by, 
         :subject, 
+        :location,
+        :remarks,
         :outgoing,
         attachments_attributes: [
           :id,

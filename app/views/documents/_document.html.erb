@@ -21,6 +21,18 @@
 </p>
 
 <p>
+  <strong>Google Drive Link:</strong>
+  <%= @document.location %>
+</p>
+
+
+<p>
+  <strong>Remarks:</strong>
+  <%= simple_format( @document.remarks ) %>
+</p>
+
+
+<p>
   <strong>Attachments:</strong> 
   <% @attachments.each do |a| %>
     <li>

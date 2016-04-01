@@ -1,0 +1,49 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "Ingoing documents") do |sheet|
+    sheet.add_row [
+        "Control Number",
+        "Subject",
+        "Office",
+        "Date",
+        "Received by",
+        "Google Drive Link",
+        "Remarks"
+    ]
+
+    @ingoing.each do |document|
+        sheet.add_row [
+            document.control,
+            document.subject,
+            document.office_name,
+            document.date.try(:strftime, "%d %B %Y"),
+            document.received_by,
+            document.gdrive_link,
+            document.remarks
+        ]
+    end
+end
+
+wb.add_worksheet(name: "Outgoing documents") do |sheet|
+    sheet.add_row [
+        "Control Number",
+        "Subject",
+        "Office",
+        "Date",
+        "Received by",
+        "Google Drive Link",
+        "Remarks"
+    ]
+
+    @outgoing.each do |document|
+        sheet.add_row [
+            document.control,
+            document.subject,
+            document.office_name,
+            document.date.try(:strftime, "%d %B %Y"),
+            document.received_by,
+            document.gdrive_link,
+            document.remarks
+        ]
+    end
+end

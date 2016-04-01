@@ -10,6 +10,7 @@ class Document < ActiveRecord::Base
 	accepts_nested_attributes_for :attachments, allow_destroy: true
 
 	searchkick
+	acts_as_xlsx
 
 	def office_name
 		Office.find(office).name

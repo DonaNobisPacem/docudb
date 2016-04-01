@@ -14,6 +14,13 @@ class DocumentsController < ApplicationController
       @ingoing = @documents.where(outgoing: false).order('created_at desc')
       @outgoing = @documents.where(outgoing: true).order('created_at desc')
     end
+
+    respond_to do |format|
+      format.html
+      format.xlsx {
+        render xlsx: "index", filename: "documents_spreadsheet.xlsx"
+      }
+    end
   end
 
   # GET /documents/1

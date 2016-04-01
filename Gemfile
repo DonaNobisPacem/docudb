@@ -83,3 +83,7 @@ gem 'devise'
 gem 'carrierwave', github:'carrierwaveuploader/carrierwave'
 gem 'mini_magick'
 gem 'file_validators'
+
+gem 'axlsx'
+gem 'acts_as_xlsx'
+gem 'axlsx_rails'

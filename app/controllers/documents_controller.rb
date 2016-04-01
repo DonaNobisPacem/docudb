@@ -7,12 +7,12 @@ class DocumentsController < ApplicationController
   def index
     if params[:search].present?
       #@bids = Bid.search(params[:search], page: params[:page], per_page: 10)
-      @ingoing = Document.search(params[:search], where: {outgoing: false} )
-      @outgoing = Document.search(params[:search], where: {outgoing: true} )
+      @ingoing = Document.search(params[:search], where: {outgoing: false}, order: {created_at: :desc} )
+      @outgoing = Document.search(params[:search], where: {outgoing: true}, order: {created_at: :desc} )
     else
       @documents = Document.all
-      @ingoing = @documents.where(outgoing: false)
-      @outgoing = @documents.where(outgoing: true)
+      @ingoing = @documents.where(outgoing: false).order('created_at desc')
+      @outgoing = @documents.where(outgoing: true).order('created_at desc')
     end
   end
 

@@ -5,10 +5,27 @@ class DocumentsController < ApplicationController
   # GET /documents
   # GET /documents.json
   def index
-    if params[:search].present?
-      #@bids = Bid.search(params[:search], page: params[:page], per_page: 10)
-      @ingoing = Document.search(params[:search], where: {outgoing: false}, order: {created_at: :desc} )
-      @outgoing = Document.search(params[:search], where: {outgoing: true}, order: {created_at: :desc} )
+    if params[:search].present? || params[:date_filter].present?
+      @ingoing = Document.search(
+        params[:search], 
+        where: {
+          outgoing: false,
+          date: {
+            gte: DateTime.strptime(params[:date_filter], '%m/%d/%Y %l:%M %p').beginning_of_day, 
+            lte: DateTime.strptime(params[:date_filter], '%m/%d/%Y %l:%M %p').end_of_day
+          } 
+        }, 
+        order: {created_at: :desc} )
+      @outgoing = Document.search(
+        params[:search], 
+        where: {
+          outgoing: true,
+          date: {
+            gte: DateTime.strptime(params[:date_filter], '%m/%d/%Y %l:%M %p').beginning_of_day, 
+            lte: DateTime.strptime(params[:date_filter], '%m/%d/%Y %l:%M %p').end_of_day
+          } 
+        }, 
+        order: {created_at: :desc} )
     else
       @documents = Document.all
       @ingoing = @documents.where(outgoing: false).order('created_at desc')

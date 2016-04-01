@@ -7,7 +7,7 @@
     <%= f.input :date, label: "Date Received/Sent:", :as => :date_picker, :placeholder => "DD/MM/YYYY" %>
     <%= f.input :received_by, label: "Received By:" %>
     <%= f.input :subject, label: "Subject:" %>
-    <%= f.input :location, label: "Location:" %>
+    <%= f.input :gdrive_link, label: "Google Drive Link:" %>
     <%= f.input :remarks, label: "Remarks:" %>
     <%= f.input :outgoing, label: "Status:", collection: [[false, "Ingoing"], [true, "Outgoing"]], label_method: :last, value_method: :first, as: :radio_buttons %>
 

@@ -101,7 +101,7 @@ class DocumentsController < ApplicationController
         :date, 
         :received_by, 
         :subject, 
-        :location,
+        :gdrive_link,
         :remarks,
         :outgoing,
         attachments_attributes: [

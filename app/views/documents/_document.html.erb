@@ -22,15 +22,13 @@
 
 <p>
   <strong>Google Drive Link:</strong>
-  <%= @document.location %>
+  <%= link_to @document.gdrive_link, url_with_protocol( @document.gdrive_link ), target: "_blank" if @document.gdrive_link.present? %>
 </p>
-
 
 <p>
   <strong>Remarks:</strong>
   <%= simple_format( @document.remarks ) %>
 </p>
-
 
 <p>
   <strong>Attachments:</strong> 

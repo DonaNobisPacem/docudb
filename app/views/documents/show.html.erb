@@ -1,5 +1,11 @@
 <p id="notice"><%= notice %></p>
 <div class="jumbotron">
+
+  <p>
+    <strong>Subject:</strong>
+    <%= @document.subject %>
+  </p>
+
   <p>
     <strong>Control:</strong>
     <%= @document.control %>
@@ -21,8 +27,13 @@
   </p>
 
   <p>
-    <strong>Subject:</strong>
-    <%= @document.subject %>
+    <strong>Google Drive Link:</strong>
+    <%= link_to @document.gdrive_link, url_with_protocol( @document.gdrive_link ), target: "_blank" if @document.gdrive_link.present? %>
+  </p>
+
+  <p>
+    <strong>Remarks:</strong>
+    <%= simple_format( @document.remarks ) %>
   </p>
 
   <p>

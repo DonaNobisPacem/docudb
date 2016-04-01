@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160331033147) do
+ActiveRecord::Schema.define(version: 20160401054245) do
 
   create_table "attachments", force: :cascade do |t|
     t.string   "attachment",  limit: 255
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20160331033147) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.boolean  "outgoing"
-    t.text     "location",    limit: 65535
+    t.string   "location",    limit: 255
     t.text     "remarks",     limit: 65535
   end
 

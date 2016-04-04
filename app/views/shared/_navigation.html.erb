@@ -18,7 +18,7 @@
 
 					<% if current_page?(root_url) || current_page?(documents_path) %>
 						<li>
-							<%= link_to documents_path(:format => "xlsx") do %>
+							<%= link_to documents_path(params.merge(format: "xlsx")) do %>
 							  	<i class="fa fa-table"></i> Export to Excel
 							<% end %>
 						</li>

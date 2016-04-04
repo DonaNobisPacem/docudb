@@ -6,26 +6,53 @@ class DocumentsController < ApplicationController
   # GET /documents.json
   def index
     if params[:search].present? || params[:date_filter].present?
-      @ingoing = Document.search(
-        params[:search], 
-        where: {
-          outgoing: false,
-          date: {
-            gte: DateTime.strptime(params[:date_filter], '%m/%d/%Y %l:%M %p').beginning_of_day, 
-            lte: DateTime.strptime(params[:date_filter], '%m/%d/%Y %l:%M %p').end_of_day
-          } 
-        }, 
-        order: {created_at: :desc} )
-      @outgoing = Document.search(
-        params[:search], 
-        where: {
-          outgoing: true,
-          date: {
-            gte: DateTime.strptime(params[:date_filter], '%m/%d/%Y %l:%M %p').beginning_of_day, 
-            lte: DateTime.strptime(params[:date_filter], '%m/%d/%Y %l:%M %p').end_of_day
-          } 
-        }, 
-        order: {created_at: :desc} )
+      # @ingoing = Document.search(
+      #   params[:search], 
+      #   where: {
+      #     outgoing: false,
+      #     date: {
+      #       gte: DateTime.strptime(params[:date_filter], '%m/%d/%Y %l:%M %p').beginning_of_day, 
+      #       lte: DateTime.strptime(params[:date_filter], '%m/%d/%Y %l:%M %p').end_of_day
+      #     } 
+      #   }, 
+      #   order: {created_at: :desc} )
+      # @outgoing = Document.search(
+      #   params[:search], 
+      #   where: {
+      #     outgoing: true,
+      #     date: {
+      #       gte: DateTime.strptime(params[:date_filter], '%m/%d/%Y %l:%M %p').beginning_of_day, 
+      #       lte: DateTime.strptime(params[:date_filter], '%m/%d/%Y %l:%M %p').end_of_day
+      #     } 
+      #   }, 
+      #   order: {created_at: :desc} )
+
+      search = params[:search].present? ? params[:search] : "*"
+      where = {}
+
+      # if params[:date_filter].present?
+      #   where[:date] = {
+      #     gte: DateTime.strptime(params[:date_filter], '%m/%d/%Y %l:%M %p').beginning_of_day,
+      #     lte: DateTime.strptime(params[:date_filter], '%m/%d/%Y %l:%M %p').end_of_day
+      #   }
+      # end
+
+      # @ingoing = Document.search(search, where.merge(outgoing: false))
+      # @outgoing = Document.search(search, where.merge(outgoing: true))
+
+      # search = params[:search].present? ? params[:search] : "*"
+      # where = {misspellings: false}
+
+      if params[:date_filter].present?
+        where[:date] = {
+          gte: DateTime.strptime(params[:date_filter], '%m/%d/%Y %l:%M %p').beginning_of_day,
+          lte: DateTime.strptime(params[:date_filter], '%m/%d/%Y %l:%M %p').end_of_day
+        }
+      end
+
+      @ingoing = Document.search( search, where: where.merge(:outgoing => false), order: {created_at: :desc}, misspellings: false )
+      @outgoing = Document.search( search, where: where.merge(:outgoing => true), order: {created_at: :desc}, misspellings: false )
+
     else
       @documents = Document.all
       @ingoing = @documents.where(outgoing: false).order('created_at desc')

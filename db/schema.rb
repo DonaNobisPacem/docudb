@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160401055052) do
+ActiveRecord::Schema.define(version: 20160404023727) do
 
   create_table "attachments", force: :cascade do |t|
     t.string   "attachment",  limit: 255
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20160401055052) do
     t.boolean  "outgoing"
     t.string   "gdrive_link", limit: 255
     t.text     "remarks",     limit: 65535
+    t.datetime "letter_date"
   end
 
   create_table "offices", force: :cascade do |t|

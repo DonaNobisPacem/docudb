@@ -17,8 +17,13 @@
   </p>
 
   <p>
-    <strong>Date:</strong>
+    <strong>Date Received:</strong>
     <%= @document.date.strftime("%d %B %Y") %>
+  </p>
+
+  <p>
+    <strong>Date on Letter:</strong>
+    <%= @document.letter_date.try(:strftime, "%d %B %Y") %>
   </p>
 
   <p>

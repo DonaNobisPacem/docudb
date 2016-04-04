@@ -149,7 +149,8 @@ class DocumentsController < ApplicationController
       params.require(:document).permit(
         :control, 
         :office, 
-        :date, 
+        :date,
+        :letter_date, 
         :received_by, 
         :subject, 
         :gdrive_link,

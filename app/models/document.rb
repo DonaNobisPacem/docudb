@@ -3,6 +3,7 @@ class Document < ActiveRecord::Base
 	validates :office, presence: true
 	validates :date, presence: true
 	#validates :received_by, presence: true
+	validates_presence_of :received_by, if: :is_ingoing?
 	validates :subject, presence: true
 	validates :outgoing, inclusion: [true, false]
 
@@ -15,4 +16,14 @@ class Document < ActiveRecord::Base
 	def office_name
 		Office.find(office).name
 	end
+
+	private
+
+		def is_ingoing?
+			if outgoing
+				return false
+			else
+				return true
+			end
+		end
 end

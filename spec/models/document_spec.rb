@@ -9,7 +9,7 @@ RSpec.describe Document, type: :model do
   	it { should validate_presence_of(:control) }
   	it { should validate_presence_of(:office) }
   	it { should validate_presence_of(:date) }
-  	it { should validate_presence_of(:received_by) }
+  	#it { should validate_presence_of(:received_by) }
   	it { should validate_presence_of(:subject) }
 
   	it { should validate_uniqueness_of(:control) }
@@ -19,6 +19,16 @@ RSpec.describe Document, type: :model do
 		  it { should allow_value(false).for(:outgoing) }
 		  it { should_not allow_value(nil).for(:outgoing) }
   	end
+
+    context "Ingoing Document" do
+      before(:each) { allow(subject).to receive(:is_ingoing?).and_return(true) }
+      it { should validate_presence_of(:received_by) }
+    end
+
+    context "Outgoing Document" do
+      before(:each) { allow(subject).to receive(:is_ingoing?).and_return(false) }
+      it { should_not validate_presence_of(:received_by) }
+    end
   end
 
   describe "ActiveRecord Validations" do

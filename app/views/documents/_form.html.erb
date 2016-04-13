@@ -19,7 +19,7 @@
    
 
     <div class="row">
-      <div class="col-md-6">  <%= f.input :outgoing, label: "Status:", collection: [[false, "Ingoing"], [true, "Outgoing"]], label_method: :last, value_method: :first, as: :radio_buttons %> </div>
+      <div class="col-md-6">  <%= f.input :outgoing, label: "Status:", collection: [[false, "Received"], [true, "Released"]], label_method: :last, value_method: :first, as: :radio_buttons %> </div>
       <div class="col-md-6">  <%= f.input :archival, label: "Archival Status:", collection: [[true, "Active"], [false, "For Archival"]], label_method: :last, value_method: :first, as: :radio_buttons %> </div>
     </div>
 

@@ -10,9 +10,18 @@
     </div>
     <%= f.input :received_by, label: "Received By:" %>
     <%= f.input :subject, label: "Subject:" %>
+    <div class="row">
+      <div class="col-md-6"> <%= f.input :action_subject, label: "Action Required From:" %> </div>
+      <div class="col-md-6"> <%= f.input :action_done, label: "Action Required to be Done:" %> </div>
+    </div>
     <%= f.input :gdrive_link, label: "Google Drive Link:" %>
     <%= f.input :remarks, label: "Remarks:" %>
-    <%= f.input :outgoing, label: "Status:", collection: [[false, "Ingoing"], [true, "Outgoing"]], label_method: :last, value_method: :first, as: :radio_buttons %>
+   
+
+    <div class="row">
+      <div class="col-md-6">  <%= f.input :outgoing, label: "Status:", collection: [[false, "Ingoing"], [true, "Outgoing"]], label_method: :last, value_method: :first, as: :radio_buttons %> </div>
+      <div class="col-md-6">  <%= f.input :archival, label: "Archival Status:", collection: [[true, "Active"], [false, "For Archival"]], label_method: :last, value_method: :first, as: :radio_buttons %> </div>
+    </div>
 
     <b>Attachments: </b><br>
     <%= file_field_tag "attachments[]", type: :file, multiple: true %>

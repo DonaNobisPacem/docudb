@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160404023727) do
+ActiveRecord::Schema.define(version: 20160413080524) do
 
   create_table "attachments", force: :cascade do |t|
     t.string   "attachment",  limit: 255
@@ -23,17 +23,20 @@ ActiveRecord::Schema.define(version: 20160404023727) do
   add_index "attachments", ["document_id"], name: "index_attachments_on_document_id", using: :btree
 
   create_table "documents", force: :cascade do |t|
-    t.string   "control",     limit: 255
-    t.integer  "office",      limit: 4
+    t.string   "control",        limit: 255
+    t.integer  "office",         limit: 4
     t.datetime "date"
-    t.string   "received_by", limit: 255
-    t.string   "subject",     limit: 255
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "received_by",    limit: 255
+    t.string   "subject",        limit: 255
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.boolean  "outgoing"
-    t.string   "gdrive_link", limit: 255
-    t.text     "remarks",     limit: 65535
+    t.string   "gdrive_link",    limit: 255
+    t.text     "remarks",        limit: 65535
     t.datetime "letter_date"
+    t.boolean  "archival"
+    t.string   "action_subject", limit: 255
+    t.string   "action_done",    limit: 255
   end
 
   create_table "offices", force: :cascade do |t|

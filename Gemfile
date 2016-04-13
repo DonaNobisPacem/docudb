@@ -44,6 +44,12 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'shoulda-callback-matchers'
   gem 'simplecov', :require => false
+
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-passenger'
 end
 
 group :development do

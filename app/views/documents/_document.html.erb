@@ -26,8 +26,23 @@
 </p>
 
 <p>
+  <strong>Action Required From:</strong>
+  <%= @document.action_subject %>
+</p>
+
+<p>
+  <strong>Action Required to be Done:</strong>
+  <%= @document.action_done %>
+</p>
+
+<p>
   <strong>Google Drive Link:</strong>
   <%= link_to @document.gdrive_link, url_with_protocol( @document.gdrive_link ), target: "_blank" if @document.gdrive_link.present? %>
+</p>
+
+<p>
+  <strong>Archival Status:</strong>
+  <%= @document.archival_status %>
 </p>
 
 <p>

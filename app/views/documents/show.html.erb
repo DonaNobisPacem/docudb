@@ -7,6 +7,16 @@
   </p>
 
   <p>
+    <strong>Status:</strong>
+    <%= @document.flow_status %>
+  </p>
+
+    <p>
+    <strong>Archival Status:</strong>
+    <%= @document.archival_status %>
+  </p>
+
+  <p>
     <strong>Control:</strong>
     <%= @document.control %>
   </p>
@@ -29,6 +39,16 @@
   <p>
     <strong>Received by:</strong>
     <%= @document.received_by %>
+  </p>
+
+  <p>
+    <strong>Action Required From:</strong>
+    <%= @document.action_subject %>
+  </p>
+
+  <p>
+    <strong>Action Required to be Done:</strong>
+    <%= @document.action_done %>
   </p>
 
   <p>

@@ -11,8 +11,8 @@ RSpec.describe Document, type: :model do
   	it { should validate_presence_of(:date) }
   	#it { should validate_presence_of(:received_by) }
   	it { should validate_presence_of(:subject) }
-    it { should validate_presence_of(:action_subject) }
-    it { should validate_presence_of(:action_done) }
+    #it { should validate_presence_of(:action_subject) }
+    #it { should validate_presence_of(:action_done) }
 
   	it { should validate_uniqueness_of(:control) }
 

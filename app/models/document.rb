@@ -5,8 +5,8 @@ class Document < ActiveRecord::Base
 	#validates :received_by, presence: true
 	validates_presence_of :received_by, if: :is_ingoing?
 	validates :subject, presence: true
-	validates :action_subject, presence: true
-	validates :action_done, presence: true
+	#validates :action_subject, presence: true
+	#validates :action_done, presence: true
 	validates :outgoing, inclusion: [true, false]
 	validates :archival, inclusion: [true, false]
 
@@ -32,7 +32,7 @@ class Document < ActiveRecord::Base
 
 	def archival_status
 		if archival == true
-			return "For Archival"
+			return "For Archiving"
 		elsif archival == false
 			return "Active"
 		else

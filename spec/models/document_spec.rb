@@ -16,15 +16,26 @@ RSpec.describe Document, type: :model do
 
   	it { should validate_uniqueness_of(:control) }
 
-  	context "Outgoing boolean validation" do
+  	context "Boolean validation" do
   		it { should allow_value(true).for(:outgoing) }
 		  it { should allow_value(false).for(:outgoing) }
 		  it { should_not allow_value(nil).for(:outgoing) }
 
-
       it { should allow_value(true).for(:archival) }
       it { should allow_value(false).for(:archival) }
       it { should_not allow_value(nil).for(:archival) }
+
+      it { should allow_value(true).for(:completed) }
+      it { should allow_value(false).for(:completed) }
+      it { should_not allow_value(nil).for(:completed) }
+
+      it { should allow_value(true).for(:fyi) }
+      it { should allow_value(false).for(:fyi) }
+      it { should_not allow_value(nil).for(:fyi) }
+
+      it { should allow_value(true).for(:follow_up) }
+      it { should allow_value(false).for(:follow_up) }
+      it { should_not allow_value(nil).for(:follow_up) }
   	end
 
     context "Ingoing Document" do
@@ -57,14 +68,50 @@ RSpec.describe Document, type: :model do
     end
 
     context "returns the correct archival status description" do
-      it "returns \"For Archival\" when archival is true" do 
+      it "returns \"For Archiving\" when archival is true" do 
         document = FactoryGirl.create(:document, archival: true)
-        expect(document.archival_status).to eq("For Archival")
+        expect(document.archival_status).to eq("For Archiving")
       end
 
       it "returns \"Active\" when archival is false" do 
         document = FactoryGirl.create(:document, archival: false)
         expect(document.archival_status).to eq("Active")
+      end
+    end
+
+    context "returns the correct transactional status description" do
+      it "returns \"Transaction Completed\" when completed is true" do 
+        document = FactoryGirl.create(:document, completed: true)
+        expect(document.transaction_status).to eq("Transaction Completed")
+      end
+
+      it "returns \"Transaction Active\" when completed is false" do 
+        document = FactoryGirl.create(:document, completed: false)
+        expect(document.transaction_status).to eq("Transaction Active")
+      end
+    end
+
+    context "returns the correct information status description" do
+      it "returns \"For Information Only/No Action Required\" when fyi is true" do 
+        document = FactoryGirl.create(:document, fyi: true)
+        expect(document.information_status).to eq("Information Only/No Action Required")
+      end
+
+      it "returns \"Action Required\" when fyi is false" do 
+        document = FactoryGirl.create(:document, fyi: false)
+        expect(document.information_status).to eq("Action Required")
+      end
+    end
+
+    context "returns the correct follow up status description" do
+      it "returns \"For Follow Up\" when follow up is true" do 
+        document = FactoryGirl.create(:document, follow_up: true)
+        expect(document.follow_status).to eq("For Follow Up")
+      end
+
+      it "returns \"Not For Follow Up\" when follow up is false" do 
+        document = FactoryGirl.create(:document, follow_up: false)
+        expect(document.follow_status).to eq("Not For Follow Up")
       end
     end
   end

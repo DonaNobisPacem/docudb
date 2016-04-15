@@ -10,18 +10,32 @@
     </div>
     <%= f.input :received_by, label: "Received By:" %>
     <%= f.input :subject, label: "Subject:" %>
-    <div class="row">
-      <div class="col-md-6"> <%= f.input :action_subject, label: "Action Required From:" %> </div>
-      <div class="col-md-6"> <%= f.input :action_done, label: "Action Required to be Done:" %> </div>
-    </div>
-    <%= f.input :gdrive_link, label: "Google Drive Link:" %>
-    <%= f.input :remarks, label: "Remarks:" %>
-   
 
     <div class="row">
-      <div class="col-md-6">  <%= f.input :outgoing, label: "Status:", collection: [[false, "Received"], [true, "Released"]], label_method: :last, value_method: :first, as: :radio_buttons %> </div>
-      <div class="col-md-6">  <%= f.input :archival, label: "Archival Status:", collection: [[false, "Active"], [true, "For Archiving"]], label_method: :last, value_method: :first, as: :radio_buttons %> </div>
+      <div class="col-md-2">  <%= f.input :outgoing, label: "Status:", collection: [[false, "Received"], [true, "Released"]], label_method: :last, value_method: :first, as: :radio_buttons %> </div>
+      <div class="col-md-2">  <%= f.input :archival, label: "Archival Status:", collection: [[false, "Active"], [true, "For Archiving"]], label_method: :last, value_method: :first, as: :radio_buttons %> </div>
+      <div class="col-md-3">  <%= f.input :completed, label: "Transation Completion Status:", collection: [[false, "Active"], [true, "Completed"]], label_method: :last, value_method: :first, as: :radio_buttons %> </div>
+      <div class="col-md-3">  <%= f.input :fyi, label: "Information Only/No Action Required:", collection: [[true, "Yes"], [false, "No"]], label_method: :last, value_method: :first, as: :radio_buttons %> </div>
+      <div class="col-md-2">  <%= f.input :follow_up, label: "For Follow Up:", collection: [[true, "Yes"], [false, "No"]], label_method: :last, value_method: :first, as: :radio_buttons %> </div>
     </div>
+
+    <div class="row">
+      <div class="col-md-8"> <%= f.input :action_subject, label: "Action Required From:" %> </div>
+      <div class="col-md-4"> <%= f.input :follow_date, label: "Date and Time of last action taken:", as: :datetime_picker, placeholder: "DD/MM/YYYY HH:mm" %> </div>
+    </div> 
+
+    <!-- <div class="row">
+      <div class="col-md-6"> <%# f.input :action_subject, label: "Action Required From:" %> </div>
+      <div class="col-md-6"> <%# f.input :action_done, label: "Action Required to be Done:" %> </div>
+    </div> -->
+
+    <div class="row">
+      <div class="col-md-6"> <%= f.input :gdrive_link, label: "Google Drive Link:" %> </div>
+      <div class="col-md-6"> <%= f.input :folder, label: "Local Folder Location:" %> </div>
+    </div> 
+    
+    <%= f.input :remarks, label: "Remarks:" %>
+
 
     <b>Attachments: </b><br>
     <%= file_field_tag "attachments[]", type: :file, multiple: true %>

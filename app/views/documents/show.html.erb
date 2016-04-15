@@ -11,11 +11,6 @@
     <%= @document.flow_status %>
   </p>
 
-    <p>
-    <strong>Archival Status:</strong>
-    <%= @document.archival_status %>
-  </p>
-
   <p>
     <strong>Control:</strong>
     <%= @document.control %>
@@ -27,7 +22,7 @@
   </p>
 
   <p>
-    <strong>Date Received:</strong>
+    <strong>Date <%= @document.outgoing ? "Released" : "Received" %>:</strong>
     <%= @document.date.strftime("%d %B %Y") %>
   </p>
 
@@ -42,18 +37,51 @@
   </p>
 
   <p>
-    <strong>Action Required From:</strong>
-    <%= @document.action_subject %>
+    <strong>Archival Status:</strong>
+    <%= @document.archival_status %>
   </p>
 
   <p>
-    <strong>Action Required to be Done:</strong>
-    <%= @document.action_done %>
+    <strong>Transaction Completion Status:</strong>
+    <%= @document.transaction_status %>
   </p>
+
+  <% unless @document.archival || @document.completed %>
+    <% if @document.fyi %> 
+      <p>
+        <strong>Information Status:</strong>
+        <%= @document.information_status %>
+      </p>
+    <% else %>
+      <% if @document.follow_up %>
+        <p>
+          <strong>Follow Up Status:</strong>
+          <%= @document.follow_status %>
+        </p>
+        <% if @document.action_subject.present? %> 
+          <p>
+            <strong>Action Required From:</strong>
+            <%= @document.action_subject %>
+          </p>
+        <% end %>
+        <% if @document.follow_date.present? %> 
+          <p>
+            <strong>Latest Action on:</strong>
+            <%= @document.follow_date.try(:strftime, "%d %B %Y - %H:%M") %>
+          </p> 
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
 
   <p>
     <strong>Google Drive Link:</strong>
     <%= link_to @document.gdrive_link, url_with_protocol( @document.gdrive_link ), target: "_blank" if @document.gdrive_link.present? %>
+  </p>
+
+  <p>
+    <strong>Local Folder Location:</strong>
+    <%= @document.folder %>
   </p>
 
   <p>

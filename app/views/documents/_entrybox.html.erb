@@ -7,8 +7,19 @@
 				<small><%= document.control %></small> <br>
 			</div>
 			<div class="col-md-4">
-				<small class="text-danger pull-right"><%= document.archival_status %></small> 
-				<% if document.action_subject.present? %> <small class="text-danger pull-right">Action needed from <%= document.action_subject %></small> <% end %>
+				<small class="text-danger pull-right"><%= document.archival_status %></small> <br>
+				<small class="text-danger pull-right"><%= document.transaction_status %></small>
+				<% unless document.archival || document.completed %>
+					<% if document.fyi %> 
+						<hr> <small class="text-danger pull-right"><%= document.information_status %></small>
+					<% else %>
+						<% if document.follow_up %>
+							<hr> <small class="text-danger pull-right"><%= document.follow_status %></small>
+							<% if document.action_subject.present? %> <small class="text-danger pull-right">Action needed from <%= document.action_subject %></small> <% end %>
+							<% if document.follow_date.present? %> <small class="text-danger pull-right">Latest Action on <%= document.follow_date.try(:strftime, "%d/%m/%Y %H:%M") %></small> <% end %>
+						<% end %>
+					<% end %>
+				<% end %>
 			</div>
 		</div>
 	</div>

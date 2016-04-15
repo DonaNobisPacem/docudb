@@ -34,6 +34,11 @@ RSpec.describe DocumentsController, type: :controller do
       action_done: "Action Done 1",
       outgoing: true,
       archival: false,
+      completed: false,
+      fyi: false,
+      follow_up: false,
+      folder: "folder",
+      follow_date: DateTime.now,
       attachments_attributes: [
         {
           attachment: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'files', 'test_attachment.pdf'))

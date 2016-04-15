@@ -159,6 +159,11 @@ class DocumentsController < ApplicationController
         :remarks,
         :outgoing,
         :archival,
+        :completed,
+        :fyi,
+        :follow_up,
+        :follow_date,
+        :folder,
         attachments_attributes: [
           :id,
           :attachment,

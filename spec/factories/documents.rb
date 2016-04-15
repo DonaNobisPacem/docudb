@@ -9,5 +9,8 @@ FactoryGirl.define do
     action_done {FFaker::Movie.title}
     outgoing true
     archival false
+    completed false
+    fyi false
+    follow_up true
   end
 end

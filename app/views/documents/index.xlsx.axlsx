@@ -5,9 +5,17 @@ wb.add_worksheet(name: "Ingoing documents") do |sheet|
         "Control Number",
         "Subject",
         "Office",
-        "Date",
+        "Date Received",
+        "Date on Letter",
         "Received by",
+        "Archival Status",
+        "Transaction Completion Status",
+        "Information Status",
+        "Follow Up Status",
+        "Action Required From",
+        "Latest Action Date",
         "Google Drive Link",
+        "Local Folder Location",
         "Remarks"
     ]
 
@@ -17,8 +25,16 @@ wb.add_worksheet(name: "Ingoing documents") do |sheet|
             document.subject,
             document.office_name,
             document.date.try(:strftime, "%d %B %Y"),
+            document.letter_date.try(:strftime, "%d %B %Y"),
             document.received_by,
+            document.archival_status,
+            document.transaction_status,
+            document.information_status,
+            document.follow_status,
+            document.action_subject,
+            document.follow_date.try(:strftime, "%d %B %Y - %H:%M"),
             document.gdrive_link,
+            document.folder
             document.remarks
         ]
     end
@@ -29,9 +45,17 @@ wb.add_worksheet(name: "Outgoing documents") do |sheet|
         "Control Number",
         "Subject",
         "Office",
-        "Date",
+        "Date Released",
+        "Date on Letter",
         "Received by",
+        "Archival Status",
+        "Transaction Completion Status",
+        "Information Status",
+        "Follow Up Status",
+        "Action Required From",
+        "Latest Action Date",
         "Google Drive Link",
+        "Local Folder Location",
         "Remarks"
     ]
 
@@ -41,8 +65,16 @@ wb.add_worksheet(name: "Outgoing documents") do |sheet|
             document.subject,
             document.office_name,
             document.date.try(:strftime, "%d %B %Y"),
+            document.letter_date.try(:strftime, "%d %B %Y"),
             document.received_by,
+            document.archival_status,
+            document.transaction_status,
+            document.information_status,
+            document.follow_status,
+            document.action_subject,
+            document.follow_date.try(:strftime, "%d %B %Y - %H:%M"),
             document.gdrive_link,
+            document.folder
             document.remarks
         ]
     end

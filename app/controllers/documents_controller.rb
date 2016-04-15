@@ -164,6 +164,7 @@ class DocumentsController < ApplicationController
         :follow_up,
         :follow_date,
         :folder,
+        :urgent,
         attachments_attributes: [
           :id,
           :attachment,

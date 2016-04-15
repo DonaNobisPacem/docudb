@@ -12,11 +12,12 @@
     <%= f.input :subject, label: "Subject:" %>
 
     <div class="row">
-      <div class="col-md-2">  <%= f.input :outgoing, label: "Status:", collection: [[false, "Received"], [true, "Released"]], label_method: :last, value_method: :first, as: :radio_buttons %> </div>
-      <div class="col-md-2">  <%= f.input :archival, label: "Archival Status:", collection: [[false, "Active"], [true, "For Archiving"]], label_method: :last, value_method: :first, as: :radio_buttons %> </div>
-      <div class="col-md-3">  <%= f.input :completed, label: "Transation Completion Status:", collection: [[false, "Active"], [true, "Completed"]], label_method: :last, value_method: :first, as: :radio_buttons %> </div>
-      <div class="col-md-3">  <%= f.input :fyi, label: "Information Only/No Action Required:", collection: [[true, "Yes"], [false, "No"]], label_method: :last, value_method: :first, as: :radio_buttons %> </div>
-      <div class="col-md-2">  <%= f.input :follow_up, label: "For Follow Up:", collection: [[true, "Yes"], [false, "No"]], label_method: :last, value_method: :first, as: :radio_buttons %> </div>
+      <div class="col-md-4">  <%= f.input :outgoing, label: "Status:", collection: [[false, "Received"], [true, "Released"]], label_method: :last, value_method: :first, as: :radio_buttons %> </div>
+      <div class="col-md-4">  <%= f.input :archival, label: "Archival Status:", collection: [[false, "Active"], [true, "For Archiving"]], label_method: :last, value_method: :first, as: :radio_buttons %> </div>
+      <div class="col-md-4">  <%= f.input :completed, label: "Transation Completion Status:", collection: [[false, "Active"], [true, "Completed"]], label_method: :last, value_method: :first, as: :radio_buttons %> </div>
+      <div class="col-md-4">  <%= f.input :fyi, label: "Information Only/No Action Required:", collection: [[true, "Yes"], [false, "No"]], label_method: :last, value_method: :first, as: :radio_buttons %> </div>
+      <div class="col-md-4">  <%= f.input :follow_up, label: "For Follow Up:", collection: [[true, "Yes"], [false, "No"]], label_method: :last, value_method: :first, as: :radio_buttons %> </div>
+      <div class="col-md-4">  <%= f.input :urgent, label: "Urgency Status:", collection: [[true, "Urgent"], [false, "Not Urgent"]], label_method: :last, value_method: :first, as: :radio_buttons %> </div>
     </div>
 
     <div class="row">

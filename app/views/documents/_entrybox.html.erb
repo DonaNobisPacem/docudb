@@ -1,9 +1,9 @@
 <%= link_to document, remote: true do %>
 
-	<div class="well well-sm">
+	<div class="well well-sm <%= document.urgent ? "div-urgent" : "" %>">
 		<div class="row">
 			<div class="col-md-8">
-				<b><%= document.subject %></b> <br>
+				<b><%= document.urgent ? "[URGENT]" : "" %> <%= document.subject %></b> <br>
 				<small><%= document.control %></small> <br>
 			</div>
 			<div class="col-md-4">

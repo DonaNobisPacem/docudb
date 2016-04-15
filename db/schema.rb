@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160415053859) do
+ActiveRecord::Schema.define(version: 20160415083355) do
 
   create_table "attachments", force: :cascade do |t|
     t.string   "attachment",  limit: 255
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20160415053859) do
     t.boolean  "fyi"
     t.boolean  "follow_up"
     t.datetime "follow_date"
+    t.boolean  "urgent"
   end
 
   create_table "offices", force: :cascade do |t|

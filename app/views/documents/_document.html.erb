@@ -25,10 +25,12 @@
   <%= @document.received_by %>
 </p>
 
+<% if @document.archival %>
 <p>
   <strong>Archival Status:</strong>
   <%= @document.archival_status %>
 </p>
+<% end %>
 
 <p>
   <strong>Transaction Completion Status:</strong>

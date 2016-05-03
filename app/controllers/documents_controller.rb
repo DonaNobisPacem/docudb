@@ -54,7 +54,7 @@ class DocumentsController < ApplicationController
       @outgoing = Document.search( search, where: where.merge(:outgoing => true), order: {created_at: :desc}, misspellings: false )
 
     else
-      @documents = Document.all
+      @documents = Document.where(archival: false)
       @ingoing = @documents.where(outgoing: false).order('created_at desc')
       @outgoing = @documents.where(outgoing: true).order('created_at desc')
     end
@@ -136,6 +136,12 @@ class DocumentsController < ApplicationController
       format.html { redirect_to documents_url, notice: 'Document was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def archive
+    @documents = Document.where(archival: true)
+    @ingoing = @documents.where(outgoing: false).order('created_at desc')
+    @outgoing = @documents.where(outgoing: true).order('created_at desc')
   end
 
   private

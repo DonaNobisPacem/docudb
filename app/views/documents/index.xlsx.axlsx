@@ -34,7 +34,7 @@ wb.add_worksheet(name: "Ingoing documents") do |sheet|
             document.action_subject,
             document.follow_date.try(:strftime, "%d %B %Y - %H:%M"),
             document.gdrive_link,
-            document.folder
+            document.folder,
             document.remarks
         ]
     end
@@ -74,7 +74,7 @@ wb.add_worksheet(name: "Outgoing documents") do |sheet|
             document.action_subject,
             document.follow_date.try(:strftime, "%d %B %Y - %H:%M"),
             document.gdrive_link,
-            document.folder
+            document.folder,
             document.remarks
         ]
     end

@@ -35,7 +35,7 @@ class Document < ActiveRecord::Base
 
 	def archival_status
 		if archival == true
-			return "For Archiving"
+			return "Archived"
 		elsif archival == false
 			return "Active"
 		else

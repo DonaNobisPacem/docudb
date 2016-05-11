@@ -68,9 +68,9 @@ RSpec.describe Document, type: :model do
     end
 
     context "returns the correct archival status description" do
-      it "returns \"For Archiving\" when archival is true" do 
+      it "returns \"Archived\" when archival is true" do 
         document = FactoryGirl.create(:document, archival: true)
-        expect(document.archival_status).to eq("For Archiving")
+        expect(document.archival_status).to eq("Archived")
       end
 
       it "returns \"Active\" when archival is false" do 
